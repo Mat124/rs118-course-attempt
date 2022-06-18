@@ -6,7 +6,7 @@ struct Professor {
     subject: String,
     parking_space: bool,
     age: u32,
-    bald: bool,
+    student_count: u32,
     hair: HairColour
 }
 
@@ -17,13 +17,12 @@ enum HairColour {
     Black
 }
 
-enum Option<T> {
-    None,
-    Some(T)
-}
-
-fn getHair(x: Professor) -> Option<String> {
-
+fn get_student_teacher_ratio(x: Professor) -> Option<u32> {
+    if (x.student_count == 0) {
+        None
+    } else {
+        Some(x.student_count)
+    }
 }
 
 fn main() {
@@ -41,9 +40,40 @@ fn main() {
         subject: String::from("Computer Science"),
         parking_space: true,
         age: 30,
-        bald: true,
-        hair: None
+        student_count: 0,
+        hair: HairColour::Black
     };
 
     println!("The new professor is called {} and they are {} years old!", matt.name, matt.age);
+    
+    println!("Their student teacher ratio is {:?}", get_student_teacher_ratio(matt));
+
+    /*
+    loop {
+        println!("Why did you make this infinite loop?");
+    }
+    */
+
+    let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+    for letter in letters {
+        println!("The next letter is: {}", letter);
+    }
+
+    let funky_string = String::from("This is my funky new string");
+
+    let mut s_count = 0;
+
+    for letter in funky_string.chars() {
+        match letter {
+            's' => {
+                s_count = s_count + 1;
+            },
+            _ => {
+
+            }
+        }
+    }
+
+    println!("There are {} characters in the phrase: \"{}\"", s_count, funky_string);
 }
