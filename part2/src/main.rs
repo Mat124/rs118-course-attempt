@@ -59,11 +59,32 @@ fn main() {
 
     //Slices
     //References with a length, e.g. only 5 elements of a string starting from the 2nd element
+    //changes made to slices of mutable variables are made to the originals
     let s9 = String::from("string 9");
-    let slice = last_five(&s9);
+    let slice = last_five(&s9); //&str is string literal and string slice type
     println!("{slice}");
 
-    
+
+    //Vecs
+    //similar to python lists, java arraylists, etc. Can act like a stack with push/pop
+    let mut v1: Vec<i32> = Vec::new(); //need to specify type of data in vec, e.g. i32
+    let v2: Vec<&str> = Vec::from(["element 1", "element 2", "element 3"]); //vec from array
+    for i in 1..5 {
+        v1.push(i);
+    }
+    let tail: Option<i32> = v1.pop(); //last element pushed to v1 (5)
+    match tail {
+        Some(tail) => println!("tail is {tail}"),
+        None => println!("empty vec: no tail"),
+    }
+    let second = &v2[1]; //this is not safe: index can be out of bounds
+    println!("the second element in v2 is {second}");
+    let maybe_fourth = v2.get(4);//attempts to get item at position 4
+    match maybe_fourth {
+        Some(maybe_fourth) => println!("4th element is {maybe_fourth}"),
+        None => println!("there is no 4th element"),
+    }
+
 }
 
 fn takes_ownership(some_string: String) {
@@ -90,4 +111,25 @@ fn add_text(s: &mut String) { //requires mutable type
 fn last_five(s: &String) -> &str {
     let i = s.len();
     &s[i-5..i]
+}
+
+struct Rectangle {
+    width: f32,
+    height: f32,
+}
+
+impl Shape for Rectangle { //contains functions of the rectangle struct and implements a trait (interface)
+    fn area(&self) -> f32 { //calculates and returns area of rectangle
+        self.height * self.width
+    }
+}
+
+impl Rectangle { //
+    fn new(size: (f32, f32)) -> Self { //creates new rectangle from a tuple, called with Rectangle::new((x, y));
+        Rectangle { width: size.0, height: size.1}
+    }
+}
+
+trait Shape { //trait is like an interface
+    fn area(&self) -> f32;
 }
