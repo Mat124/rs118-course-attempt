@@ -53,6 +53,22 @@ fn main() {
     println!("{nums:?}"); //as vec, requires formatting as no default, :? indicates debugging format
     let squared_nums = nums.map(square);
     println!("{squared_nums:?}");
+
+    // Iterators
+    // For loops work using iterators, looping over them
+    // Have useful functions, like sum, min, max, etc
+    let v1 = vec![1, 2, 3];
+    let v1_iter = v1.iter(); //the iterator over v1
+    for val in v1_iter { //gets values from the vec dynamically/by reference
+        println!("{val}");
+    }
+    //dot product of 2 vecs using iterators and closures
+    let x = vec![4, 7, 12, -9, 18, 1];
+    let y = vec![1, 0, -8, 63, 72, -11];
+    let d1 = x.iter().zip(y.iter()).fold(0, |sum, (xi, yi)| sum+xi+yi);
+    //zips together to create vec of tuples (xi, yi)
+    //folds together into 1 value with initial val of 0 and using the closure to multiply before summing
+    println!("{d1}");
 }
 
 struct Word<'a>(&'a str);
