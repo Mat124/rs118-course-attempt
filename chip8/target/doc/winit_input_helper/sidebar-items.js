@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["TextChar","Stores a character or a backspace."]],"struct":[["WinitInputHelper","The main struct of the API."]]});

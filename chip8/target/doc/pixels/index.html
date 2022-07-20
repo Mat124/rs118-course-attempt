@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A tiny library providing a GPU-powered pixel buffer."><meta name="keywords" content="rust, rustlang, rust-lang, pixels"><title>pixels - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../dark.css" disabled><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../pixels/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../pixels/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Crate pixels</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.9.0</li><li><a id="all-types" href="all.html">All Items</a></li></div></ul><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li></ul></div></section><div id="sidebar-vars" data-name="pixels" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../pixels/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">pixels</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/pixels/lib.rs.html#1-617">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A tiny library providing a GPU-powered pixel buffer.</p>
+<p><a href="struct.Pixels.html" title="Pixels"><code>Pixels</code></a> represents a 2D pixel buffer with an explicit image resolution, making it ideal for
+prototyping simple pixel-based games, animations, and emulators. The pixel buffer is rendered
+entirely on the GPU, allowing developers to easily incorporate special effects with shaders and
+a customizable pipeline.</p>
+<p>The GPU interface is offered by <a href="https://crates.io/crates/wgpu"><code>wgpu</code></a>, and is re-exported for
+your convenience. Use a windowing framework or context manager of your choice;
+<a href="https://crates.io/crates/winit"><code>winit</code></a> is a good place to start. Any windowing framework that
+uses <a href="https://crates.io/crates/raw-window-handle"><code>raw-window-handle</code></a> will work.</p>
+<h2 id="environment-variables"><a href="#environment-variables">Environment variables</a></h2>
+<p>Pixels will default to selecting the most powerful GPU and most modern graphics API available on
+the system, and these choices can be overridden with environment variables. These are the same
+vars supported by the <a href="https://github.com/gfx-rs/wgpu/tree/v0.10/wgpu#usage"><code>wgpu</code> examples</a>.</p>
+<ul>
+<li><code>WGPU_BACKEND</code>: Select the backend (aka graphics API).
+<ul>
+<li>Supported values: <code>vulkan</code>, <code>metal</code>, <code>dx11</code>, <code>dx12</code>, <code>gl</code>, <code>webgpu</code></li>
+<li>The default depends on capabilities of the host system, with <code>vulkan</code> being preferred on
+Linux and Windows, and <code>metal</code> preferred on macOS.</li>
+</ul>
+</li>
+<li><code>WGPU_ADAPTER_NAME</code>: Select an adapter (aka GPU) with substring matching.
+<ul>
+<li>E.g. <code>1080</code> will match <code>NVIDIA GeForce 1080ti</code></li>
+</ul>
+</li>
+<li><code>WGPU_POWER_PREF</code>: Select an adapter (aka GPU) that meets the given power profile.
+<ul>
+<li>Supported values: <code>low</code>, <code>high</code></li>
+<li>The default is <code>low</code>. I.e. an integrated GPU will be preferred over a discrete GPU.</li>
+</ul>
+</li>
+</ul>
+<p>Note that <code>WGPU_ADAPTER_NAME</code> and <code>WGPU_POWER_PREF</code> are mutually exclusive and that
+<code>WGPU_ADAPTER_NAME</code> takes precedence.</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item"><code>pub use <a class="mod" href="../raw_window_handle/index.html" title="mod raw_window_handle">raw_window_handle</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use <a class="mod" href="../wgpu/index.html" title="mod wgpu">wgpu</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Pixels.html" title="pixels::Pixels struct">Pixels</a></div><div class="item-right docblock-short"><p>Represents a 2D pixel buffer with an explicit image resolution.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.PixelsBuilder.html" title="pixels::PixelsBuilder struct">PixelsBuilder</a></div><div class="item-right docblock-short"><p>A builder to help create customized pixel buffers.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.PixelsContext.html" title="pixels::PixelsContext struct">PixelsContext</a></div><div class="item-right docblock-short"><p>Provides the internal state for custom shaders.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.ScalingRenderer.html" title="pixels::ScalingRenderer struct">ScalingRenderer</a></div><div class="item-right docblock-short"><p>The default renderer that scales your frame to the screen size.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.SurfaceTexture.html" title="pixels::SurfaceTexture struct">SurfaceTexture</a></div><div class="item-right docblock-short"><p>A logical texture for a window surface.</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Error.html" title="pixels::Error enum">Error</a></div><div class="item-right docblock-short"><p>All the ways in which creating a pixel buffer can fail.</p>
+</div></div></div></section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="pixels" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
+</body></html>
