@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["block_on","Block the thread until the future is ready."]],"trait":[["FutureExt","An extension trait that allows blocking on a future in suffix position."]]});

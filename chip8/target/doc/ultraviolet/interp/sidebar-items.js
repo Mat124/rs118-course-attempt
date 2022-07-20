@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["Lerp","Pure linear interpolation, i.e. `(1.0 - t) * self + (t) * end`."],["Slerp","Spherical-linear interpolation."]]});

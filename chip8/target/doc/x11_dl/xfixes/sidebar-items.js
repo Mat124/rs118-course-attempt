@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["XFixesCursorImage",""],["XFixesCursorNotifyEvent",""],["XFixesSelectionNotifyEvent",""],["Xlib",""]],"type":[["PointerBarrier",""],["XserverRegion",""]]});
