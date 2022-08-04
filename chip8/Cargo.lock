@@ -1072,8 +1072,9 @@ checksum = "f1382d1f0a252c4bf97dc20d979a2fdd05b024acd7c2ed0f7595d7817666a157"
 
 [[package]]
 name = "rs118-chip8"
-version = "0.1.0"
-source = "git+https://github.com/uwcs/rs118-chip8/#94361ff385c455a120183347f1019cf86515b26d"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "22901ed6880a4ac8169f8bdff1e92c9ca4bcdade4bf4907794fb17cd9454460d"
 dependencies = [
  "clap",
  "crossbeam",
